@@ -7,29 +7,17 @@ import {Observable} from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CoursesService } from './services/courses.service';
 
-function coursesServiceProvider(http: HttpClient): CoursesService {
-  return new CoursesService(http);
-}
-
-const COURSES_SERVICE = new InjectionToken<CoursesService>('COURSES_SERVICE');
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [
-    {
-      provide: COURSES_SERVICE,
-      useFactory: coursesServiceProvider,
-      deps: [HttpClient]
-    }
-  ]
+  providers: [ CoursesService ]
 })
 export class AppComponent implements OnInit {
 
   listCourses$: Observable<Course[]>;
 
-  constructor(@Inject(COURSES_SERVICE) private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService) {
   }
 
   ngOnInit() {
