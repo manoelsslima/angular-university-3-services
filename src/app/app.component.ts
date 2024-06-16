@@ -35,4 +35,8 @@ export class AppComponent implements OnInit {
       );
   }
 
+  onEditCourse() {
+    this.courses[0].description = 'New Value!';
+  }
+
 }
