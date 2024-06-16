@@ -1,19 +1,13 @@
 import {
-  AfterContentInit,
-  AfterViewInit,
+  Attribute,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  QueryList,
-  ViewEncapsulation,
 } from "@angular/core";
 import { Course } from "../model/course";
-import { CourseImageComponent } from "../course-image/course-image.component";
 
 @Component({
   selector: "course-card",
@@ -31,9 +25,13 @@ export class CourseCardComponent implements OnInit {
   @Output("courseChanged")
   courseEmitter = new EventEmitter<Course>();
 
-  constructor() {}
+  constructor(
+    @Attribute('type') private tipo: string
+  ) {
+    console.log(this.tipo);
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSaveClicked(description: string) {
     this.courseEmitter.emit({ ...this.course, description });
