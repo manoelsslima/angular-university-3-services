@@ -8,6 +8,7 @@ import {
   Output,
 } from "@angular/core";
 import { Course } from "../model/course";
+import { CoursesService } from "../services/courses.service";
 
 @Component({
   selector: "course-card",
@@ -25,13 +26,14 @@ export class CourseCardComponent implements OnInit {
   @Output("courseChanged")
   courseEmitter = new EventEmitter<Course>();
 
-  constructor(
-    @Attribute('type') private tipo: string
-  ) {
-    console.log(this.tipo);
+  constructor(private coursesService: CoursesService,
+              @Attribute('type') private tipo: string) {
+    //console.log('constructor', this.course);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    //console.log("ngOnInit", this.course);
+  }
 
   onSaveClicked(description: string) {
     this.courseEmitter.emit({ ...this.course, description });

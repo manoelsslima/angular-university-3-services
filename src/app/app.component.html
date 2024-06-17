@@ -6,17 +6,14 @@
 </div>
 
 <div class="demo">
-  <button (click)="onEditCourse()">Edit Course</button>
+  <button (click)="destroyComponent()">Destroy component</button>
 </div>
 
-<div>
-  <div class="courses">
-    <course-card
-      *ngFor="let course of courses"
-      (courseChanged)="save($event)"
-      [course]="course"
-      type="beginner">
-      <course-image [src]="course.iconUrl"></course-image>
-    </course-card>
-  </div>
+<div class="courses" *ngIf="courses[0] as course">
+  <course-card
+    (courseChanged)="save($event)"
+    [course]="course"
+    type="beginner">
+    <course-image [src]="course.iconUrl"></course-image>
+  </course-card>
 </div>
