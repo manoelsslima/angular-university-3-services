@@ -15,16 +15,26 @@ import {
   Output,
   SimpleChanges,
 } from "@angular/core";
-import { Course } from "../model/course";
-import { CoursesService } from "../services/courses.service";
+import { Course } from "../../model/course";
+import { CoursesService } from "../courses.service";
 
 @Component({
   selector: "course-card",
   templateUrl: "./course-card.component.html",
   styleUrls: ["./course-card.component.css"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked, AfterViewChecked, AfterContentInit, AfterViewInit, DoCheck {
+export class CourseCardComponent
+  implements
+    OnInit,
+    OnDestroy,
+    OnChanges,
+    AfterContentChecked,
+    AfterViewChecked,
+    AfterContentInit,
+    AfterViewInit,
+    DoCheck
+{
   @Input()
   course: Course;
 
@@ -34,9 +44,11 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
   @Output("courseChanged")
   courseEmitter = new EventEmitter<Course>();
 
-  constructor(private coursesService: CoursesService,
-              @Attribute('type') private tipo: string) {
-    console.log('constructor');
+  constructor(
+    private coursesService: CoursesService,
+    @Attribute("type") private tipo: string
+  ) {
+    console.log("constructor");
   }
 
   ngAfterViewInit(): void {
@@ -53,7 +65,7 @@ export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterC
 
   ngAfterContentChecked(): void {
     console.log("ngAfterContentChecked");
-    this.course.description = "ngAfterContentChecked"
+    this.course.description = "ngAfterContentChecked";
   }
 
   ngOnChanges(changes: SimpleChanges): void {
