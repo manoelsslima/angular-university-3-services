@@ -4,8 +4,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
+  SimpleChange,
+  SimpleChanges,
 } from "@angular/core";
 import { Course } from "../model/course";
 import { CoursesService } from "../services/courses.service";
@@ -16,7 +20,7 @@ import { CoursesService } from "../services/courses.service";
   styleUrls: ["./course-card.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, OnDestroy, OnChanges {
   @Input()
   course: Course;
 
@@ -30,9 +34,16 @@ export class CourseCardComponent implements OnInit {
               @Attribute('type') private tipo: string) {
     //console.log('constructor', this.course);
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("ngOnChanges", changes);
+  }
+
+  ngOnDestroy(): void {
+    console.log("ngOnDestroy");
+  }
 
   ngOnInit() {
-    //console.log("ngOnInit", this.course);
+    console.log("ngOnInit");
   }
 
   onSaveClicked(description: string) {
